@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="深度学习,神经网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="随着深度学习算法在图像领域中的成功运用，学术界的目光重新回到神经网络上；而随着 AlphaGo 在围棋领域制造的大新闻，全科技界的目光都聚焦在“深度学习”、“神经网络”这些关键词上。与大众的印象不完全一致的是，神经网络算法并不算是十分高深晦涩的算法；相对于机器学习中某一些数学味很强的算法来说，神经网络算法甚至可以算得上是“简单粗暴”。只是，在神经网络的训练过程中，以及算法的实际运用中，存在着许多困">
+<meta name="keywords" content="深度学习,神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文档扫描：深度神经网络在移动端的实践">
+<meta property="og:url" content="http://yoursite.com/2018/02/01/档扫描：深度神经网络在移动端的实践/index.html">
+<meta property="og:site_name" content="goodChat">
+<meta property="og:description" content="随着深度学习算法在图像领域中的成功运用，学术界的目光重新回到神经网络上；而随着 AlphaGo 在围棋领域制造的大新闻，全科技界的目光都聚焦在“深度学习”、“神经网络”这些关键词上。与大众的印象不完全一致的是，神经网络算法并不算是十分高深晦涩的算法；相对于机器学习中某一些数学味很强的算法来说，神经网络算法甚至可以算得上是“简单粗暴”。只是，在神经网络的训练过程中，以及算法的实际运用中，存在着许多困">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/ynote_ocr.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/2.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/3.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/4.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/5.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/6.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/7.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/9.png">
+<meta property="og:image" content="http://yoursite.com/images/10.png">
+<meta property="og:image" content="http://yoursite.com/images/11.png">
+<meta property="og:image" content="http://yoursite.com/images/12.png">
+<meta property="og:image" content="http://yoursite.com/images/14.jpeg">
+<meta property="og:updated_time" content="2018-02-01T02:30:25.678Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文档扫描：深度神经网络在移动端的实践">
+<meta name="twitter:description" content="随着深度学习算法在图像领域中的成功运用，学术界的目光重新回到神经网络上；而随着 AlphaGo 在围棋领域制造的大新闻，全科技界的目光都聚焦在“深度学习”、“神经网络”这些关键词上。与大众的印象不完全一致的是，神经网络算法并不算是十分高深晦涩的算法；相对于机器学习中某一些数学味很强的算法来说，神经网络算法甚至可以算得上是“简单粗暴”。只是，在神经网络的训练过程中，以及算法的实际运用中，存在着许多困">
+<meta name="twitter:image" content="http://yoursite.com/images/ynote_ocr.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/01/档扫描：深度神经网络在移动端的实践/"/>
+
+
+
+
+
+  <title>文档扫描：深度神经网络在移动端的实践 | goodChat</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">goodChat</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/档扫描：深度神经网络在移动端的实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DWJ/Pecan dingwj1041@foxmail.com">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pecan.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="goodChat">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文档扫描：深度神经网络在移动端的实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T09:56:00+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/01/档扫描：深度神经网络在移动端的实践/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/02/01/档扫描：深度神经网络在移动端的实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着深度学习算法在图像领域中的成功运用，学术界的目光重新回到神经网络上；而随着 AlphaGo 在围棋领域制造的大新闻，全科技界的目光都聚焦在“深度学习”、“神经网络”这些关键词上。与大众的印象不完全一致的是，神经网络算法并不算是十分高深晦涩的算法；相对于机器学习中某一些数学味很强的算法来说，神经网络算法甚至可以算得上是“简单粗暴”。只是，在神经网络的训练过程中，以及算法的实际运用中，存在着许多困难，和一些经验，这些经验是比较有技巧性的。<br>有道云笔记不久前更新的文档扫描功能中使用了神经网络算法。本文试图以文档扫描算法中所运用的神经网络算法为线索，聊一聊神经网络算法的原理，以及其在工程中的应用。<br><a id="more"></a></p>
+<h3 id="一、-背景篇"><a href="#一、-背景篇" class="headerlink" title="一、 背景篇"></a>一、 背景篇</h3><p><img src="/images/ynote_ocr.jpeg" alt="Alt text"><br>首先介绍一下什么是文档扫描功能。文档扫描功能希望能在用户拍摄的照片中，识别出文档所在的区域，进行拉伸(比例还原)，识别出其中的文字，最终得到一张干净的图片或是一篇带有格式的文字版笔记。实现这个功能需要以下这些步骤：</p>
+<h5 id="1-识别文档区域"><a href="#1-识别文档区域" class="headerlink" title="1. 识别文档区域"></a>1. 识别文档区域</h5><p>将文档从背景中找出来，确定文档的四个角；</p>
+<h5 id="2-拉伸文档区域，还原宽高比"><a href="#2-拉伸文档区域，还原宽高比" class="headerlink" title="2. 拉伸文档区域，还原宽高比"></a>2. 拉伸文档区域，还原宽高比</h5><p>根据文档四个角的坐标，根据透视原理，计算出文档原始宽高比，并将文档区域拉伸还原成矩形。这是所有步骤中唯一具有解析算法的步骤</p>
+<h5 id="3-色彩增强"><a href="#3-色彩增强" class="headerlink" title="3. 色彩增强"></a>3. 色彩增强</h5><p>根据文档的类型，选择不同的色彩增强方法，将文档图片的色彩变得干净清洁；</p>
+<h5 id="4-布局识别"><a href="#4-布局识别" class="headerlink" title="4. 布局识别"></a>4. 布局识别</h5><p>理解文档图片的布局，找出文档的文字部分；</p>
+<h5 id="5-OCR"><a href="#5-OCR" class="headerlink" title="5. OCR"></a>5. OCR</h5><p>将图片形式的“文字”识别成可编码的文字；</p>
+<h5 id="6-生成笔记"><a href="#6-生成笔记" class="headerlink" title="6. 生成笔记"></a>6. 生成笔记</h5><p>根据文档图片的布局，从 OCR 的结果中生成带有格式的笔记。<br><img src="/images/2.jpeg" alt="Alt_text"><br>在上述这些步骤中，“拉伸文档区域”和“生成笔记”是有解析算法或明确规则的，不需要机器学习处理。剩下的步骤中都含有机器学习算法。其中“文档区域识别”和“OCR”这两个步骤我们是采用深度神经网络算法来完成的。<br>之所以在这两个步骤选择深度神经网络算法，是考虑到其他算法很难满足我们的需求：<br>场景复杂，浅层学习很难很好的学习推广；<br>同时，深度神经网络的一些难点在这两个步骤中相对不那么困难<br>属于深度神经网络算法所擅长的图像和时序领域；<br>能够获取到大量的数据。能够对这些数据进行明确的标注。<br>接下来的内容中，我们将展开讲讲“文档区域识别”步骤中的神经网络算法。</p>
+<h3 id="二、算法篇"><a href="#二、算法篇" class="headerlink" title="二、算法篇"></a>二、算法篇</h3><p>文档区域识别中使用的神经网络算法主要是全卷积网络(FCN)1。在介绍 FCN 前，首先简单介绍一下 FCN 的基础，卷积神经网络（这里假设读者对人工神经网络有最基本的了解）。</p>
+<h5 id="（一）卷积神经网络-CNN-Convolutional-Neural-Networks"><a href="#（一）卷积神经网络-CNN-Convolutional-Neural-Networks" class="headerlink" title="（一）卷积神经网络(CNN, Convolutional Neural Networks)"></a>（一）卷积神经网络(CNN, Convolutional Neural Networks)</h5><p>卷积神经网络（CNN）早在 1962 年就被提出2，而目前最广泛应用的结构大概是 LeCun 在 1998 年提出的3。CNN 和普通神经网络一样，由输入、输出层和若干隐层组成。<br>CNN 的每一层并不是一维的，而是有(长, 宽, 通道数)三个维度，例如输入层为一张 rgb 图片，则其输入层三个维度分别是(图片高度, 图片宽度, 3)。<br>与普通神经网络相比，CNN 有如下特点：<br>1.第 n 层的某个节点并不和第 n-1 层的所有节点相关，只和它空间位置附近的(n-1层)节点相关；<br>2.同一层中，所有节点共享权值；<br>3.每隔若干层会有一个池化(pool)层，其功能是按比例缩小这一层的长和宽(通常是减半)。常用的 pool 方法有局部极大值(Max)和局部均值(Mean)两种。<br>通过加入若干 pool 层，CNN 中隐层的长和宽不断缩小。当长宽缩小到一定程度(通常是个位数)的时候，CNN 在顶部连接上一个传统的全连接(Fully connected)神经网络，整个网络结构就搭建完成了。<br><img src="/images/3.jpeg" alt="Alt_text"><br>CNN 之所以能够有效，在于它利用了图像中的一些约束。特点1对应着图像的局域相关性(图像上右上角某点跟远处左下角某点关系不大)；特点2对应着图像的平移不变性(图像右上角的形状，移动到左下角仍然是那个形状)；特点3对应着图像的放缩不变性(图像缩放后，信息丢失的很少)。这些约束的加入，就好比物理中”动量守恒定理“这类发现。守恒定理能让物体的运动可预测，而约束的加入能让识别过程变得可控，对训练数据的需求降低，更不容易出现过拟合。</p>
+<h5 id="（二）全卷积网络-FCN-Fully-Convolutional-Networks"><a href="#（二）全卷积网络-FCN-Fully-Convolutional-Networks" class="headerlink" title="（二）全卷积网络(FCN, Fully Convolutional Networks)"></a>（二）全卷积网络(FCN, Fully Convolutional Networks)</h5><p><img src="/images/4.jpeg" alt="Alt_text"><br>全卷积网络(FCN)是 CNN 基础上发展起来的算法。与 CNN 不同，FCN 要解决这样的问题：图像的识别目标不是图像级的标签，而是像素级的标签。例如：<br>1.图像分割 需要将图像根据语义分割成若干类别，其中每一个像素都对应着一个分类结果；<br>2.边缘检测 需要将图像中的边缘部分和非边缘部分分隔开来，其中每一个像素都对应着“边缘”或“非边缘”。(我们面对的就属于这类问题。)<br>3.视频分割 将图像分割用在连续的视频图像中。<br>在 CNN 中，pool 层让隐层的长宽缩小，而 FCN 面对的是完整长宽的标签，如何处理这对矛盾呢？<br>一个办法是不使用 pool 层，让每一个隐层的长宽都等于完整的长宽。这样做的缺点是，一来计算量相当大，尤其是当运算进行到 CNN 的较高层，通道数达到几百上千的时候；二来不使用 pool 层，卷积就始终是在局域进行，这样识别的结果没有利用到全局信息。<br>另一个办法是转置卷积(convolution transpose)，可以理解为反向操作的 pool 层，或者上采样层，将隐层通过插值放缩回原来的长宽。这正是 FCN 采用的办法。当然，由于 CNN 的最后一个隐层的长宽很小，基本上只有全局信息，如果只对该隐层进行上采样，则局部细节就都丢失了。为此，FCN 会对 CNN 中间的几个隐层进行同样的上采样，由于中间层放缩的程度较低，保留了较多的局部细节，因而上采样的结果也会包含较多的局域信息。最后，将几个上采样的结果综合起来作为输出，这样就能比较好的平衡全局和局域信息。<br><img src="/images/5.jpeg" alt="Alt_text"><br>整个 FCN 的结构如上图所示。FCN 去掉了 CNN 在顶部连接的全连接层，在每个转置卷积层之前都有一个分类器，将分类器的输出上采样(转置卷积)，然后相加。<br><img src="/images/6.jpeg" alt="Alt_text"><br>上图是我们实验中真实产生的上采样结果。可以看到，层级较低的隐层保留了很多图片细节，而层级较高的隐层对全局分布理解的比较好。将二者综合起来，得到了既包含全局信息，又没有丢失局域信息的结果。</p>
+<h5 id="（三）转置卷积-convolution-transpose"><a href="#（三）转置卷积-convolution-transpose" class="headerlink" title="（三）转置卷积(convolution transpose)"></a>（三）转置卷积(convolution transpose)</h5><p>上文中出现的“转置卷积”是怎样实现的呢？顾名思义，转置卷积也是一种卷积操作，只不过是将 CNN 中的卷积操作的 Input 和 Output 的大小反转了过来。<a href="https://github.com/vdumoulin/conv_arithmetic" target="_blank" rel="noopener">https://github.com/vdumoulin/conv_arithmetic</a> 中提供了一系列转置卷积的图示，不过我个人认为更符合原意的转置卷积的图示如下图：<br><img src="/images/7.jpeg" alt="Alt_text"><br>与 conv_arithmetric 提供的图示对比，可以看出上图只是卷积示意图的上下翻转。在实际运算中，Input 层的某个节点数值会（以卷积核为权重）加权相加到与该节点相关的每一个 Output 层节点上。<br>从维度上来看，如果记卷积核的高、宽为 H 和 W，Input 层的 channel 数为 C，Output 层的 channel 数为 O，那么一次正向卷积的输入节点数为 H <em> W </em> C，输出节点数为 O；而一次转置卷积运算的输入节点数为 C ，输出节点数为 H <em> W </em> O。</p>
+<h5 id="（四）改进的-cross-entropy-损失函数"><a href="#（四）改进的-cross-entropy-损失函数" class="headerlink" title="（四）改进的 cross entropy 损失函数"></a>（四）改进的 cross entropy 损失函数</h5><p>在边缘识别问题中，每一个像素都对应着“边缘-非边缘”中的某一类。于是，我们可以认为每一个像素都是一个训练样本。这会带来一个问题：通常图片中的边缘要远少于非边缘，于是两类样本的数量悬殊。在模式识别问题中，类别不平衡会造成很多不可控的结果，是要极力避免的。<br>通常面对这种情况，我们会采用对少样本类别进行重复采样(过采样)，或是基于原样本的空间分布产生人工数据。然而在本问题中，由于同一张图中包含很多样本，这两种常用的方法都不能进行。该怎么解决样本数量悬殊问题呢？<br>2015 年 ICCV 上的一篇论文4提出了名为 HED 的边缘识别模型，试着用改变损失函数(Loss Function)的定义来解决这个问题。我们的算法中也采用了这种方法。<br>首先我们概述一下 CNN 常用的 cross entropy 损失函数。在二分类问题里，cross entropy 的定义如下：<br><img src="/images/9.png" alt="Alt_text"><br>这里 l 为损失值，n 为样本数，k 表示第几个样本，Q 表示标签值，取值为 0 或者 1，p 为分类器计算出来的”该样本属于类别 1 “的概率，在 0 到 1 之间。<br>这个函数虽然看起来复杂，但如果对它取指数(L=exp(-l))，会发现这是全部样本均预测正确的概率。比如样本集的标签值分别为 (1, 1, 0, 1, 1, 0, …)，则：<br><img src="/images/10.png" alt="Alt_text"><br>这里 L 是似然函数，也就是全部样本均预测正确的概率。<br>HED 使用了加权的 cross entropy 函数。例如，当标签 0 对应的样本极少时，加权 cross entropy 函数定义为：<br><img src="/images/11.png" alt="Alt_text"><br>这里 W 为权重，需要大于 1。不妨设 W = 2，此时考虑似然函数：<br><img src="/images/12.png" alt="Alt_text"><br>可见类别为 0 的样本在似然函数中重复出现了，比重因此而增加。通过这种办法，我们虽然不能实际将少样本类别的样本数目扩大，却通过修改损失函数达到了基本等价的效果。</p>
+<h3 id="三、数据篇"><a href="#三、数据篇" class="headerlink" title="三、数据篇"></a>三、数据篇</h3><p>文档区域识别中用到的神经网络算法就介绍到这里了，接下来聊一聊我们为训练这个神经网络所构建的数据集。</p>
+<h5 id="（一）数据筛选"><a href="#（一）数据筛选" class="headerlink" title="（一）数据筛选"></a>（一）数据筛选</h5><p>为了训练神经网络模型，我们标注了样本容量为五万左右的数据集。然而这些数据集中存在大量的坏数据，需要对数据进行进一步筛选。<br>五万左右的数据集，只凭人工来进行筛选成本太高了。好在根据网络的自由度等一些经验判断，我们的网络对数据集的大小要求尚没有那么高，数据集还算比较富足，可以允许一部分好的数据被错筛掉。<br>基于这一前提，我们人工标注了一个小训练集(500张)，训练了一个 SVM 分类器来自动筛选数据。这个分类器只能判断图片中是否含有完整的文档，且分类效果并不特别强。不过，我们有选择性的强调了分类器分类的准确率，而对其召回率要求不高。换而言之，这个分类器可以接受把含有文档的图片错分成了不含文档的图片，但不能接受把不含文档的图片分进了含有文档的图片这一类中。<br>依靠这个分类器，我们将五万左右的数据集筛选得到了一个九千左右的较小数据集。再加上人工筛选，最终剩下容量为八千左右的，质量有保证的数据集。</p>
+<h3 id="四、实现篇"><a href="#四、实现篇" class="headerlink" title="四、实现篇"></a>四、实现篇</h3><p>在模型训练中，我们使用 tensorflow 框架5进行模型训练。我们的最终目标是在移动端(手机端)实现文档区域识别功能，而移动端与桌面端存在着一些区别：<br>1.移动端的运算能力全方位的弱于桌面端;<br>2.带宽和功耗端限制，决定了移动端的显卡尤其弱于桌面端的独显；<br>3.移动端有 ios 和 Android 两个阵营，它们对密集运算的优化 API 各不相同，代码很难通用；<br>4.移动端对文件体积敏感。<br>这些区别使得我们不能直接将模型移植到移动端，而需要对它们做一些优化，保证其运行效率。优化的思路大致有两种：<br>1.选择合适的神经网络框架，尽可能用上芯片的加速技术；<br>2.压缩模型，在不损失精度的前提下减小模型的计算开销和文件体积。</p>
+<h5 id="（一）神经网络框架的选择"><a href="#（一）神经网络框架的选择" class="headerlink" title="（一）神经网络框架的选择"></a>（一）神经网络框架的选择</h5><p>目前比较流行的神经网络框架包括 tensorflow, caffe6, mxnet7 等，它们大多数都有相应的移动端框架。所以直接使用这些移动端框架是最方便的选择。例如我们使用 tensorflow 框架进行模型训练，那么直接使用移动端 tensorflow 框架，就能省去模型转换的麻烦。<br>有的时候，我们可能不需要一个大而全的神经网络框架，或者对运行效率要求特别高。此时我们可以考虑一个底层一些的框架，在此基础上实现自己的需求。这方面的例子有 Eigen8，一个常用的矩阵运算库；NNPACK9，效率很高的神经网络底层库，等等。如果代码中已经集成了 OpenCV10，也可以考虑用其中的运算 API。<br>如果对运行效率要求很高，也可以考虑使用移动端的异构计算框架，将除 CPU 以外的 GPU、DSP 的运算能力也加入进来。这方面可以考虑的框架有 ios 端的 metal11，跨平台的 OpenGL12 和 Vulkan13，Android 端的 renderscript14。<br><img src="/images/14.jpeg" alt="Alt_text"></p>
+<h5 id="（二）模型压缩"><a href="#（二）模型压缩" class="headerlink" title="（二）模型压缩"></a>（二）模型压缩</h5><p>模型压缩最简单的方法就是去调节网络模型中各个可调的超参数，这里的超参数的例子有：网络总层数、每一层的 channel 数、每一个卷积的 kernel 宽度 等等。在一开始训练的时候，我们会选择有一定冗余的超参数去训练，确保不会因为某个超参数太小而成为网络效果的瓶颈。在模型压缩的时候，则可以把这些冗余“挤掉”，即在不明显降低识别准确率的前提下，逐步尝试调小某个超参数。在调节的过程中，我们发现网络总层数对识别效果的影响较大；相对而言，每一层的 channel 数的减小对识别效果的影响不大。<br>除了简单的调节超参数外，还有一些特别为移动端设计的模型结构，采用这些模型结构能显著的压缩模型。这方面的例子有 SVD Network15, SqueezeNet16, Mobilenets17等，这里就不细说了。</p>
+<h5 id="（三）最终效果"><a href="#（三）最终效果" class="headerlink" title="（三）最终效果"></a>（三）最终效果</h5><p>经过神经网络框架定制、模型压缩后，我们的模型大小被压缩到 1M 左右，在性能主流的手机(iphone 6, 小米 4 或配置更好的手机)上能达到 100ms 以内识别一张图片的速度，且识别精度基本没有受到影响。应该说移植是很成功的。</p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p>在两三年之前，神经网络算法在大家的眼里只适用于运算能力极强的服务器，似乎跟手机没有什么关联。然而在近两三年，出现了一些新的趋势：一是随着神经网络算法的成熟，一部分学者将研究兴趣放在了压缩神经网络的计算开销上，神经网络模型可以得到压缩；二是手机芯片的运算能力飞速发展，尤其是 GPU，DSP 运算能力的发展。伴随这一降一升，手机也能够得着神经网络的运算需求了。<br>“基于神经网络的文档扫描”功能得以实现，实在是踩在了无数前人的肩膀上完成的。从这个角度来说，我们这一代的研发人员是幸运的，能够实现一些我们过去不敢想象的东西，未来还能实现更多我们今天不能想象的东西。</p>
+<p>文章转载自 有道(鲜于海舒（有道高级研发工程师）)，文章出处(<a href="http://techblog.youdao.com/?p=1237" target="_blank" rel="noopener">http://techblog.youdao.com/?p=1237</a>)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/30/短信接口/" rel="next" title="短信接口">
+                <i class="fa fa-chevron-left"></i> 短信接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pecan.jpg"
+                alt="DWJ/Pecan dingwj1041@foxmail.com" />
+            
+              <p class="site-author-name" itemprop="name">DWJ/Pecan dingwj1041@foxmail.com</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-背景篇"><span class="nav-number">1.</span> <span class="nav-text">一、 背景篇</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-识别文档区域"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 识别文档区域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-拉伸文档区域，还原宽高比"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 拉伸文档区域，还原宽高比</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-色彩增强"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 色彩增强</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-布局识别"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 布局识别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-OCR"><span class="nav-number">1.0.5.</span> <span class="nav-text">5. OCR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-生成笔记"><span class="nav-number">1.0.6.</span> <span class="nav-text">6. 生成笔记</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、算法篇"><span class="nav-number">2.</span> <span class="nav-text">二、算法篇</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（一）卷积神经网络-CNN-Convolutional-Neural-Networks"><span class="nav-number">2.0.1.</span> <span class="nav-text">（一）卷积神经网络(CNN, Convolutional Neural Networks)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（二）全卷积网络-FCN-Fully-Convolutional-Networks"><span class="nav-number">2.0.2.</span> <span class="nav-text">（二）全卷积网络(FCN, Fully Convolutional Networks)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（三）转置卷积-convolution-transpose"><span class="nav-number">2.0.3.</span> <span class="nav-text">（三）转置卷积(convolution transpose)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（四）改进的-cross-entropy-损失函数"><span class="nav-number">2.0.4.</span> <span class="nav-text">（四）改进的 cross entropy 损失函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、数据篇"><span class="nav-number">3.</span> <span class="nav-text">三、数据篇</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（一）数据筛选"><span class="nav-number">3.0.1.</span> <span class="nav-text">（一）数据筛选</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、实现篇"><span class="nav-number">4.</span> <span class="nav-text">四、实现篇</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（一）神经网络框架的选择"><span class="nav-number">4.0.1.</span> <span class="nav-text">（一）神经网络框架的选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（二）模型压缩"><span class="nav-number">4.0.2.</span> <span class="nav-text">（二）模型压缩</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（三）最终效果"><span class="nav-number">4.0.3.</span> <span class="nav-text">（三）最终效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DWJ/Pecan dingwj1041@foxmail.com</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'aTcyPrsMS7nC20AcmVSeUXu1-gzGzoHsz',
+        appKey: '73QAQtdClNCnitJ49NkmxoLN',
+        placeholder: '评论吧',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
