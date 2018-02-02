@@ -79,15 +79,18 @@
 
 
 
+<meta name="description" content="前言进公司写了各种接口来对接第三方系统，对接方式也是五花八门，工作久后会发现，其中90%的工作流程都是固定的，由此我准备写一个整合器，将接口对接方式整合起来，用来直接生成可用接口代码，来替代目前重复的工作.">
 <meta name="keywords" content="JAVA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="杜绝重复工作，JAVA接口代码整合器">
 <meta property="og:url" content="http://yoursite.com/2018/02/02/重复工作，JAVA接口代码整合器/index.html">
 <meta property="og:site_name" content="goodChat">
+<meta property="og:description" content="前言进公司写了各种接口来对接第三方系统，对接方式也是五花八门，工作久后会发现，其中90%的工作流程都是固定的，由此我准备写一个整合器，将接口对接方式整合起来，用来直接生成可用接口代码，来替代目前重复的工作.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-02T02:59:43.152Z">
+<meta property="og:updated_time" content="2018-02-02T06:22:07.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杜绝重复工作，JAVA接口代码整合器">
+<meta name="twitter:description" content="前言进公司写了各种接口来对接第三方系统，对接方式也是五花八门，工作久后会发现，其中90%的工作流程都是固定的，由此我准备写一个整合器，将接口对接方式整合起来，用来直接生成可用接口代码，来替代目前重复的工作.">
 
 
 
@@ -380,7 +383,16 @@
       
 
       
-        
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>进公司写了各种接口来对接第三方系统，对接方式也是五花八门，工作久后会发现，其中90%的工作流程都是固定的，由此我准备写一个整合器，将接口对接方式整合起来，用来直接生成可用接口代码，来替代目前重复的工作.<br><a id="more"></a></p>
+<h4 id="目前接口对接方式"><a href="#目前接口对接方式" class="headerlink" title="目前接口对接方式"></a>目前接口对接方式</h4><p>目前接口对接方式有如下几种</p>
+<h6 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h6><p>该对接方式，一般含有握手协议或者准入验证流程，JAVA实现起来比较简单，包含两个独立线程，一个独立握手线程(包括独立输出日志)，一个独立业务线程(用来接收和发送数据包)</p>
+<h6 id="DLL"><a href="#DLL" class="headerlink" title="DLL"></a>DLL</h6><p>组件调用，在第三方门锁接口对接中DLL对接方式占用95%以上，基本逻辑是JNative先加载DLL，继承该DLL对象的接口方法，实现接口。实现接口时参数一般固定，入住时间，退房时间，房号等，有动态变化的可能就是顶替卡，系统或者本地库的表可以用来临时存储相关数据。</p>
+<h6 id="RSR232"><a href="#RSR232" class="headerlink" title="RSR232"></a>RSR232</h6><p>串口对接，串口对接在第三方电话厂商上用的比较多，由于串口通讯不需要握手，一般是直连或者是通过虚拟串口直连。基本功能之一就是获取话单并分解，然后抛给系统，这一步是固定的。比较其他功能相对就不一样了，ckin，ckot，等级，叫醒等指令，这一部分定制性相对强一点。</p>
+<h6 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h6><p>http通讯，一般用第三方公安接口，第三方短信接口平台，http相对来说要求底一点，但有的需要先将设备IP加入白名单。公安接口数据量相对其他接口是最大的，所需字段也最多，不过厂商所需字段一般固定，只是发送方式有所区别，有的采取的是拼接的方式，有的是采取post方式，以JSON数据包的方式发送。短信接口功能相对单一，场景变化也不大，动态部分一般为加密方式。</p>
+<h6 id="webservice"><a href="#webservice" class="headerlink" title="webservice"></a>webservice</h6><p>webservice通讯，该对接方式目前已经不多见了，多被http替代。常见于短信接口平台，JAVA对接webservice，首先根据对方提供的地址生成对应的接口方法，在具体实现业务的时候在调用对应的接口方法。</p>
+<h4 id="怎么实现代码整合"><a href="#怎么实现代码整合" class="headerlink" title="怎么实现代码整合"></a>怎么实现代码整合</h4><p>目前我想到的方法就是模块化，将常用功能模块化，当需要对接第三方厂商的时候，根据对接方式将相应的模块调用出来，然后生成JAVA文件，带功能模块稳定后，甚至实施工程师在现场就可以生成接口程序包，直接和厂商对接使用。</p>
+<h4 id="难点在那"><a href="#难点在那" class="headerlink" title="难点在那"></a>难点在那</h4><p>目前我开发的接口都有很强的定制性，并不是通用的，我会根据厂商系统的可靠性来判断接口开发的程度，如果我判断厂商的这个软件可靠性不够，我会加入独立的监控线程来监控接口的运行，或者在定时器外加入其他功能的线程。JAVA接口代码整合器好像看来只能整合通用代码，如果需要定制相关监控或者业务线程并在什么时候启动，这个一个难点。<br>设计步骤也不能太复杂，不然与我的简化编码流程的设计目的就背道而驰了。</p>
+
       
     </div>
     
@@ -419,6 +431,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/02/话接口代码整合器/" rel="prev" title="电话接口代码整合器">
+                电话接口代码整合器 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -475,8 +491,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -495,7 +520,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -506,7 +531,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -517,7 +542,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -540,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目前接口对接方式"><span class="nav-number">2.</span> <span class="nav-text">目前接口对接方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">2.0.1.</span> <span class="nav-text">TCP/UDP</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#DLL"><span class="nav-number">2.0.2.</span> <span class="nav-text">DLL</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#RSR232"><span class="nav-number">2.0.3.</span> <span class="nav-text">RSR232</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HTTP"><span class="nav-number">2.0.4.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#webservice"><span class="nav-number">2.0.5.</span> <span class="nav-text">webservice</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怎么实现代码整合"><span class="nav-number">3.</span> <span class="nav-text">怎么实现代码整合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#难点在那"><span class="nav-number">4.</span> <span class="nav-text">难点在那</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
